@@ -69,16 +69,6 @@ class MainViewModel: ViewModel() {
 
     fun findSatItem(schoolItem: SchoolDataItem): SATDataItem? {
         val schoolDbn = schoolItem.dbn
-//        val satItem = _satState.value.list.indexOf(
-//            SATDataItem(
-//            dbn = schoolDbn,
-//                num_of_sat_test_takers = TODO(),
-//                sat_critical_reading_avg_score = TODO(),
-//                sat_math_avg_score = TODO(),
-//                sat_writing_avg_score = TODO(),
-//                school_name = TODO()
-//            )
-//        )
         val satItem = satState.value.list.find { satObject -> satObject.dbn == schoolDbn }
         return satItem
     }
