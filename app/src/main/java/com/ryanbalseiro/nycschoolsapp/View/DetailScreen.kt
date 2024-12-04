@@ -23,11 +23,11 @@ fun DetailScreen(school: SchoolDataItem) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(top = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        school.school_name?.let { Text(text = it, textAlign = TextAlign.Center) }
-        school.campus_name?.let {
+        school.school_name.let { Text(text = it, textAlign = TextAlign.Center) }
+        school.campus_name.let {
             Text(text = it,
                 textAlign = TextAlign.Justify,
                 modifier = Modifier
