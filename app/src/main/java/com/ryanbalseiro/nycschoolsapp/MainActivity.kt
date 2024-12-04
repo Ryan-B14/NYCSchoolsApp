@@ -31,17 +31,9 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
-                ){
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("NYC High Schools",
-                            modifier = Modifier
-                                .padding(top = 25.dp)
-                                .fillMaxWidth(),
-                            fontSize = 40.sp,
-                            textAlign = TextAlign.Center,
-                        )
-                        SchoolApp(navController = navController)
-                    }
+                ) {
+                    SchoolApp(navController = navController)
+
                 }
             }
         }
