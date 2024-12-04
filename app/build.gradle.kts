@@ -62,7 +62,7 @@ dependencies {
     implementation(libs.retrofit)
 
     //gson
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
     //Compose Viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
