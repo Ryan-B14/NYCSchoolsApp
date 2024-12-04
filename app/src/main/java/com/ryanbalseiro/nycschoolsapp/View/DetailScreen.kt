@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -30,13 +31,14 @@ fun DetailScreen(school: SchoolDataItem, satData: SATDataItem?) {
             .padding(top = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = school.school_name,
+        Text(
+            text = school.school_name,
             textAlign = TextAlign.Center,
             fontSize = 40.sp,
             lineHeight = 36.sp,
             modifier = Modifier.padding(4.dp)
         )
-        if (!school.campus_name.isEmpty()) {
+        if (school.campus_name.isNotEmpty()) {
             Row {
                 Text(text = "Campus Name: ")
                 Text(text = school.campus_name, textAlign = TextAlign.Center)
@@ -50,25 +52,46 @@ fun DetailScreen(school: SchoolDataItem, satData: SATDataItem?) {
             Text(text = "School Phone Number: ")
             Text(text = school.phone_number, textAlign = TextAlign.Center)
         }
+        Row {
+            Text(text = "Primary Address: ")
+            Text(text = "${school.primary_address_line_1}, ${school.city}, NY, ${school.zip}", textAlign = TextAlign.Center)
+        }
         Text(text = "Average SAT Scores: ")
-        Row {
-            Text(text = "Math: ")
-            Text(text = satData?.sat_math_avg_score ?: "No average available", textAlign = TextAlign.Center)
+        if (satData == null) {
+            Text("No SAT data is available.")
+        } else {
+            Row {
+                Text(text = "Number of test takers: ")
+                Text(
+                    text = satData.num_of_sat_test_takers ?: "No average available",
+                    textAlign = TextAlign.Center
+                )
+            }
+            Row {
+                Text(text = "Math: ")
+                Text(
+                    text = satData.sat_math_avg_score ?: "No average available",
+                    textAlign = TextAlign.Center
+                )
+            }
+            Row {
+                Text(text = "Writing: ")
+                Text(
+                    text = satData.sat_writing_avg_score ?: "No average available",
+                    textAlign = TextAlign.Center
+                )
+            }
+            Row {
+                Text(text = "Reading: ")
+                Text(
+                    text = satData.sat_critical_reading_avg_score ?: "No average available",
+                    textAlign = TextAlign.Center
+                )
+            }
         }
-        Row {
-            Text(text = "Writing: ")
-            Text(text = satData?.sat_writing_avg_score ?: "No average available", textAlign = TextAlign.Center)
+        if (school.addtl_info1.isNotEmpty()) {
+            Text(text = "Additional info: ", textAlign = TextAlign.Center)
+            Text(text = school.addtl_info1, textAlign = TextAlign.Start)
         }
-        Row {
-            Text(text = "Reading: ")
-            Text(text = satData?.sat_critical_reading_avg_score ?: "No average available", textAlign = TextAlign.Center)
-        }
-
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun Preview(){
-//    DetailScreen(school = EmptySchoolItem.item)
 }
